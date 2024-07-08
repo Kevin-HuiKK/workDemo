@@ -1,0 +1,20 @@
+{
+    "Records": [
+      {
+        "messageId": "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
+        "receiptHandle": "MessageReceiptHandle",
+        "body": "{\"custom_id\": \"123\", \"room\": \"room1\", \"showing_name\": \"name\", \"sip_server\": \"server\", \"username\": \"user\", \"password\": \"pass\", \"action\": \"action\", \"url\": \"url\", \"action_time\": \"time\"}",
+        "attributes": {
+          "ApproximateReceiveCount": "1",
+          "SentTimestamp": "1545082649183",
+          "SenderId": "AIDAIENQZJOLO23YVJ4VO",
+          "ApproximateFirstReceiveTimestamp": "1545082649185"
+        },
+        "messageAttributes": {},
+        "md5OfBody": "098f6bcd4621d373cade4e832627b4f6",
+        "eventSource": "aws:sqs",
+        "eventSourceARN": "arn:aws:sqs:us-east-2:123456789012:MyQueue",
+        "awsRegion": "us-east-2"
+      }
+    ]
+  }
