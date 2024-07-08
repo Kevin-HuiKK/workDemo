@@ -20,7 +20,8 @@ async function getOrCreateAssistant(): Promise<any> {
     // create Assistant
     const assistant = await client.beta.assistants.create({
         model: "gpt-3.5-turbo",
-        instructions: "Given the user's input name, find the best matched name from the list below (David Smith 大卫 斯密斯, Yueling Zhang 月林张, Huawen Wu 华文吴, Annie Lee 李安妮)",
+        instructions: `Given the user's input name, find the best matched name from the list below (David Smith |大卫 斯密斯, Yueling Zhang |月林张, Huawen Wu |华文吴, Annie Lee|李安妮)
+Note: Separate each person's name with commas, with English before Chinese. Last names and given names can be combined in any order.`,
         name: "myMatcher"
     });
     console.log(`Created new Assistant: ${assistant}`);
