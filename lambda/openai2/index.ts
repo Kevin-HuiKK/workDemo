@@ -61,9 +61,8 @@ async function retrieveRun(threadId: string, runId: string): Promise<any> {
         type: string;
         text: {
             value: string;
-            annotations: any[]; // 这里可以根据实际情况定义注解的类型
-        };
-        // 可以根据需要添加其他字段
+            annotations: any[];  
+        }; 
     }
     
     while (true) {
@@ -86,14 +85,14 @@ async function retrieveRun(threadId: string, runId: string): Promise<any> {
             for (const message of allMessages.data) {
                 if (message.role === 'user' && message.content.length > 0 && message.content[0].type === 'text') {
                     userMessage = message.content[0].text.value;
-                    break; // 只取第一个匹配到的用户消息
+                    break; 
                 }
             }
 
             for (const message of allMessages.data) {
                 if (message.role === 'assistant' && message.content.length > 0 && message.content[0].type === 'text') {
                     assistantResponse = message.content[0].text.value;
-                    break; // 只取第一个匹配到的助手回复
+                    break; 
                 }
             }
 
@@ -160,7 +159,7 @@ export async function lambdaHandler(event: APIGatewayProxyEvent): Promise<APIGat
 //     try {
 //         // sim  API Gateway envent
 //         const event: APIGatewayProxyEvent = {
-//             body: JSON.stringify({ message: "Yuelin" }), // 可以修改为任何测试消息
+//             body: JSON.stringify({ message: "Yuelin" }),  
 //             headers: {},
 //             httpMethod: 'POST',
 //             isBase64Encoded: false,
