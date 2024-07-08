@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  match-name-app
+
+  Sample SAM Template for match-name-app
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 128
+    LoggingConfig:
+      LogFormat: JSON
+    
+  Api:
+    Cors:
+      AllowOrigin: "'*'"
+      AllowHeaders: "'*'"
+      AllowMethods: "'*'"
+
+Resources:
+  KkMatchLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: KkMatchLambda
+      CodeUri: lambda/openai/
+      Handler: app.lambda_handler
+      Runtime: python3.10
+      Architectures:
+        - x86_64
+      # VpcConfig:
+      Environment:
+        Variables:
+         # API_KEY: # add
+      Events:
+        AdminServEvent:
+          Type: Api
+          Properties:
+            Path: /kk/{proxy+}
+            Method: ANY
+
+  TsMatchLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: TsMatchLambda
+      CodeUri: lambda/openai2/
+      Handler: index.lambdaHandler  # Replace with your TypeScript handler
+      Runtime: nodejs20.x  # Adjust as per your TypeScript runtime needs 
+      MemorySize: 128  # Adjust memory size as necessary
+      Timeout: 30  # Adjust timeout as necessary
+      Architectures:
+        - x86_64
+      # VpcConfig:
+      #   SubnetIds:
+      #   SecurityGroupIds:
+      Environment:
+        Variables:
+         # API_KEY: #add#
+      Events:
+        TsLambdaEvent:
+          Type: Api
+          Properties:
+            Path: /ts/{proxy+}  # Example path, modify as per your API requirements
+            Method: ANY
+
+Outputs:
+  KkMatchLambdaApi:
+    Description: API Gateway endpoint URL for Prod stage for KkMatchLambdaRole
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/kk/api"
+  KkMatchLambdaArn:
+    Value: !GetAtt KkMatchLambda.Arn
+  KkMatchLambdaIamRole:
+    Description: Implicit IAM Role created for KkMatchLambdaRole
+    Value: !GetAtt KkMatchLambdaRole.Arn
+
+  TsMatchLambdaApi:
+    Description: API Gateway endpoint URL for Prod stage for TsMatchLambdaRole
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ts/api"
+  TsMatchLambdaArn:
+    Value: !GetAtt TsMatchLambda.Arn
+  TsMatchLambdaIamRole:
+    Description: Implicit IAM Role created for TsMatchLambdaRole
+    Value: !GetAtt TsMatchLambdaRole.Arn
