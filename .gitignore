@@ -1,0 +1,29 @@
+# Node.js modules
+node_modules/
+
+# Dist or build directories
+dist/
+build/
+
+# AWS SAM build artifacts
+.aws-sam/
+
+# MacOS files
+.DS_Store
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Local environment variables
+.env
+
+# Ignore all .log files
+*.log
+
+# Ignore AWS credentials and config
+.aws/
