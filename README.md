@@ -1,8 +1,8 @@
 # workDemo
 
-This project provides two Lambda functions: one in Python and one in TypeScript. Due to security policies, API keys are not provided and need to be added manually.
+This project features two Lambda functions: one implemented in Python and another in TypeScript. It leverages AWS SAM for deployment and integrates with OpenAI's MyMatcher assistant for AI model optimization.
 
-
+Due to security policies, API keys are not provided and need to be added manually.
 
 @To compile:
 For Python (using pip):
@@ -30,4 +30,7 @@ To install dependencies in the directory where the Lambda handler resides:
 
 @For AI model optimization,
 	Find the MyMatcher assistant on OpenAI, and fine-tune it freely using prompt words.
-	
+
+@workable prompt
+Given the user's input name, find the best matched name from the list below (David Smith |大卫 斯密斯, Yueling Zhang |月林张, Huawen Wu |华文吴, Annie Lee|李安妮)
+Note: Separate each person's name with commas, with English before Chinese. Last names and given names can be combined in any order.
