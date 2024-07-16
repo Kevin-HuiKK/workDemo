@@ -1,6 +1,6 @@
-明白了，你的意思是希望TTS（Text-to-Speech）函数根据队列积压情况调整播放速度，以确保在积压严重时加速播放，减少延迟。下面是调整后的方案：
 
-### 调整后的方案概述
+
+### 方案概述
 
 1. **音频捕获与分段**：前端定期捕获音频，并根据定时器和静音检测进行分段，避免单次处理超过AWS Lambda的最大执行时间。
 2. **音频流处理**：每个音频段发送到AWS Lambda进行处理。Lambda函数调用Transcribe进行语音识别，并实时处理生成的文本，进行断句标识判断。
@@ -38,9 +38,9 @@
 
 #### 1. 前端音频捕捉与处理
 
-保持不变，仍然使用WebRTC捕捉音频流并发送到AWS Lambda。
+使用WebRTC捕捉音频流并发送到AWS Lambda。
 
-#### 2. AWS Lambda: Transcribe & Process
+#### 2. AWS Lambda: Transcribe
 
 Lambda函数处理音频，调用Transcribe进行语音识别，并通过SNS发送文本段落。
 
